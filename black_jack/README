@@ -1,6 +1,8 @@
 This is a very simple text based black jack game.
 
-To use: install the gem, type in 'black_jack' to start running the program.
+To use: install the gem
+  gem install RubyJack
+  type in 'black_jack' to start running the program.
 
 There are several commands in the game:
 
