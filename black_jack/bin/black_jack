@@ -2,7 +2,7 @@
 
 require_relative '../lib/black_jack/game'
 
-
+#I want this to be in the "Game Class" main purpose here is to get the game started
 def start_a_game
   puts "What do you want to name your game?"
   game_name = gets.chomp
@@ -10,11 +10,14 @@ def start_a_game
   @game = BlackJack::Game.new(game_name)
 end
 
+#Another method that should be in the Game class
 def name_a_player
   puts "What is your name?"
   @player = BlackJack::Player.new(gets.capitalize.chomp)
 end
 
+#I think this can be cleaned up and moved to the Game class
+#this deals the game
 def deal_game
   @deck = BlackJack::Deck.new
   @dealer = BlackJack::Dealer.new()
@@ -24,12 +27,12 @@ def deal_game
   @player.take_card(@deck)
   @dealer.take_card(@deck)
   @dealer.take_card_face_down(@deck)
-  puts "\nYour cards are #{@player.hand}"
+  puts "Your cards are #{@player.hand}"
   @dealer.show_up_cards(@dealer.hand)
 end
 
-
-
+#I want this to check for a bust/blackjack and end the game
+#doesn't currently work the way I want it to
 def check_bust player=@player, dealer=@dealer
   if player.bust?
     determine_a_winner(player, dealer)
@@ -39,12 +42,14 @@ def check_bust player=@player, dealer=@dealer
   end
 end
 
+#gives the player a hit should be in game class
 def player_hits player=@player, deck=@deck, dealer=@dealer, game=@game
   player.hit(deck)
-  puts "\n#{player.name} has #{player.hand} with a value of #{player.hand_value}"
+  puts "#{player.name} has #{player.hand} with a value of #{player.hand_value}"
   check_bust player
 end
 
+#runs if stay
 def player_stays player=@player, dealer=@dealer
  dealer.show_cards(dealer.hand)
  puts "#{player.name} has #{player.hand} with a value of #{player.hand_value}"
@@ -52,6 +57,7 @@ def player_stays player=@player, dealer=@dealer
  determine_a_winner(player, dealer)
 end
 
+#allows the player to quit
 def player_quits
  puts "are you sure you want to quit? (y/n)"
  quit = gets.downcase.chomp
@@ -65,6 +71,8 @@ def player_quits
  end
 end
 
+#again should be in game class
+#figures out who wins
 def determine_a_winner player, dealer
   @game.print_players
   if player.hand_value > dealer.hand_value
@@ -79,6 +87,7 @@ def determine_a_winner player, dealer
   end
 end
 
+#again want this to be in the game class
 def play_game player=@player, deck=@deck, dealer=@dealer
   puts "Do you want to 'hit' or 'stay'?"
     loop do
@@ -97,6 +106,7 @@ def play_game player=@player, deck=@deck, dealer=@dealer
     end
 end
 
+# I would like this to be the only code in this file
 start_a_game
 name_a_player
 puts "To start the game, type 'deal'"
