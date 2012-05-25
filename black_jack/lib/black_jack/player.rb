@@ -1,4 +1,5 @@
 require_relative 'deck'
+require_relative 'card'
 
 module BlackJack
 
@@ -36,7 +37,7 @@ class Player
   def hand_value(current_value=0)
     @current_value = current_value
     self.hand.each do |card|
-      @current_value += card_value(card)
+      @current_value += card.card_value
     end
     @current_value
   end
@@ -59,6 +60,7 @@ class Player
   def fold_hand
     @hand.each {|card| hand.delete(card)}
     @hand = []
+<<<<<<< HEAD
   end 
   def play_an_ace
     puts "You've been dealt an Ace!"
@@ -117,6 +119,9 @@ class Player
       0
     end
   end
+=======
+  end  
+>>>>>>> 8b0c6e2544ea03d7da19934fa4f5a080762c3e38
   
 end  
 end

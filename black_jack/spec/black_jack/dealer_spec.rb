@@ -15,12 +15,12 @@ describe Deck do
   it "shows cards" do
     @dealer.take_card_face_down(@deck)
     @dealer.take_card(@deck)
-    @dealer.show_cards(@dealer.hand).should == ["King of clubs", "King of diamonds"]
+    @dealer.show_cards(@dealer.hand).should == [Card.new("King", "clubs"), Card.new("King", "diamonds")]
   end
 
   it "takes a card facedown" do
     @dealer.take_card_face_down(@deck)
-    @dealer.hand.should == [{:hidden=>"King of diamonds"}]
+    @dealer.hand.should == [{:hidden=>Card.new("King", "diamonds")}]
   end
 
   it "automatically takes a hit"
