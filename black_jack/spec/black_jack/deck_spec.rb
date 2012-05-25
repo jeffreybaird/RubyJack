@@ -22,11 +22,11 @@ describe Deck do
   end
   
   it "deals a card" do
-    @deck.deal_a_card.should == "King of diamonds"
+    @deck.deal_a_card.should == Card.new("King", "diamonds")
   end
   
   it "deals a specific card" do
-    @deck.deal_specific_card(0).should == "Ace of hearts"
+    @deck.deal_specific_card(0).should == Card.new("Ace", "hearts")
   end
   
 end
