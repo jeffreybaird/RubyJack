@@ -59,7 +59,21 @@ class Player
   def fold_hand
     @hand.each {|card| hand.delete(card)}
     @hand = []
-  end  
+  end 
+  def play_an_ace
+    puts "You've been dealt an Ace!"
+    puts "Do you want to play this as a 1 or an 11? Type: (1/11)"
+    answer = gets.chomp.to_i
+      if answer == 1
+        1
+      elsif answer == 11
+        11
+      else
+        puts "Please enter either a 1 or 11"
+      end
+      play_game
+  end
+   
   #I hate this method and feel like there is a much easier
   #way of doing it.
   def card_value card
@@ -70,7 +84,17 @@ class Player
     elsif card =~ /Jack/
       10
     elsif card =~ /Ace/
-      11
+      puts "You've been dealt an Ace!"
+      puts "Do you want to play this as a 1 or an 11? Type: (1/11)"
+      answer = gets.chomp.to_i
+        if answer == 1
+          @value = 1
+        elsif answer == 11
+          @value = 11
+        else
+          puts "Please enter either a 1 or 11"
+        end
+        @value
     elsif card =~ /2/
       2
     elsif card =~ /3/
