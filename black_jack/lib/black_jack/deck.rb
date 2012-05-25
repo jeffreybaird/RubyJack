@@ -14,7 +14,7 @@ class Deck
     #above two
     new_value.each do |card|
       new_suits.each do |suited|
-        @new_deck << "#{card} of #{suited}"
+        @new_deck << Card.new(card, suited)
       end 
     end 
   end
@@ -23,16 +23,15 @@ class Deck
     @new_deck = @new_deck.shuffle
   end
   
-  def deal_a_card new_deck=@new_deck
-    dealt_card = @new_deck.pop
-    dealt_card
+  def deal_a_card
+    @new_deck.pop
   end
+
   #this method was written soley for the purpose of testing
-  def deal_specific_card deck=@new_deck, index_number
-    dealt_card = @new_deck[index_number]
-    dealt_card
+  def deal_specific_card index_number
+    @new_deck[index_number]
   end
-  
+
 end
 end
 

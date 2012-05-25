@@ -40,7 +40,113 @@ class Game
   def hit deck
     self.take_card (deck)
   end
-   
+
+#I want this to be in the "Game Class" main purpose here is to get the game started
+def start
+  puts "What do you want to name your game?"
+  game_name = gets.chomp
+  game_game = game_name.capitalize
+  @game = BlackJack::Game.new(game_name)
+end
+
+#Another method that should be in the Game class
+def name_a_player
+  puts "What is your name?"
+  @player = BlackJack::Player.new(gets.capitalize.chomp)
+end
+
+#I think this can be cleaned up and moved to the Game class
+#this deals the game
+def deal
+  @deck = BlackJack::Deck.new
+  @dealer = BlackJack::Dealer.new()
+  @deck.create_a_deck
+  @deck.shuffle_deck
+  @player.take_card(@deck)
+  @player.take_card(@deck)
+  @dealer.take_card(@deck)
+  @dealer.take_card_face_down(@deck)
+  puts "Your cards are #{@player.hand}"
+  @dealer.show_up_cards(@dealer.hand)
+end
+
+#I want this to check for a bust/blackjack and end the game
+#doesn't currently work the way I want it to
+def check_bust
+  if @player.bust?
+    determine_a_winner(@player, @dealer)
+    abort("Thanks for playing!")
+  else
+    play
+  end
+end
+
+#gives the player a hit should be in game class
+def player_hits player=@player, deck=@deck, dealer=@dealer, game=@game
+  player.hit(deck)
+  puts "#{player.name} has #{player.hand} with a value of #{player.hand_value}"
+  check_bust player
+end
+
+#runs if stay
+def player_stays player=@player, dealer=@dealer
+ dealer.show_cards(dealer.hand)
+ puts "#{player.name} has #{player.hand} with a value of #{player.hand_value}"
+ puts "#{dealer.name} has #{dealer.hand} with a value of #{dealer.hand_value}"
+ determine_a_winner(player, dealer)
+end
+
+#allows the player to quit
+def player_quits
+ puts "are you sure you want to quit? (y/n)"
+ quit = gets.downcase.chomp
+ case quit
+ when 'y'
+   abort("play again soon!")
+ when 'n'
+   play
+ else
+   puts "please enter 'y' or 'n'"
+ end
+end
+
+#again should be in game class
+#figures out who wins
+def determine_a_winner player, dealer
+  @game.print_players
+  if player.hand_value > dealer.hand_value
+    puts "#{player.name} wins!"
+    abort("Thanks for playing!")
+  elsif player.hand_value == 21
+    puts "#{player.name} wins!"
+    abort("Thanks for playing!")
+  else
+    puts "#{dealer.name} wins!"
+    abort("Thanks for playing!")
+  end
+end
+
+#again want this to be in the game class
+def play
+  player = @player
+  deck   = @deck
+  dealer = @dealer
+  puts "Do you want to 'hit' or 'stay'?"
+    loop do
+    hit_stay = gets.downcase.chomp
+      case hit_stay
+      when 'hit'
+        player_hits(player, deck)
+      when 'stay'
+        player_stays
+        break
+      when 'quit'
+        player_quits
+      else
+        puts "please type 'hit', 'stay' or 'quit'"
+      end
+    end
+end
 end
 
 end
@@ -63,7 +169,7 @@ player1.take_card (deck)
 player2.take_card(deck)
 player1.hit(deck)
 player2.hit(deck)
-game.play_game
+game.play
 game.print_players
 game.bust?(player1)
 game.bust?(player2)
