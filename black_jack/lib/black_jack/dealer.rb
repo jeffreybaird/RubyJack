@@ -32,12 +32,9 @@ class Dealer < Player
   def show_cards hand
     hand.each do |card|
       if card.class == Hash
-        card = card.to_a
-        card = card.flatten
-        card = card.pop
         hand.delete_if {|x| x.class == Hash}
-        hand << card
-      end        
+        hand << card[:hidden]
+      end
     end
   end
   # this prints out the "up cards" of the dealer
@@ -49,7 +46,7 @@ class Dealer < Player
         up_cards << card      
       end
     end 
-  puts "The dealer's up-cards are #{up_cards}"
+  puts "The dealer's up-cards are #{up_cards.map { |card| card.description }.join(' ')}"
   end
 end
 

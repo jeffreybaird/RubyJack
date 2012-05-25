@@ -1,4 +1,5 @@
 require_relative 'deck'
+require_relative 'card'
 
 module BlackJack
 
@@ -36,7 +37,7 @@ class Player
   def hand_value(current_value=0)
     @current_value = current_value
     self.hand.each do |card|
-      @current_value += card_value(card)
+      @current_value += card.card_value
     end
     @current_value
   end
@@ -60,39 +61,6 @@ class Player
     @hand.each {|card| hand.delete(card)}
     @hand = []
   end  
-  #I hate this method and feel like there is a much easier
-  #way of doing it.
-  def card_value card
-    if card =~ /Queen/
-      10
-    elsif card =~ /King/
-      10
-    elsif card =~ /Jack/
-      10
-    elsif card =~ /Ace/
-      11
-    elsif card =~ /2/
-      2
-    elsif card =~ /3/
-      3
-    elsif card =~ /4/
-      4    
-    elsif card =~ /5/
-      5
-    elsif card =~ /6/
-      6
-    elsif card =~ /7/
-      7
-    elsif card =~ /8/
-      8
-    elsif card =~ /9/
-      9
-    elsif card =~ /10/
-      10
-    else
-      0
-    end
-  end
   
 end  
 end
