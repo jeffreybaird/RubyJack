@@ -60,7 +60,68 @@ class Player
   def fold_hand
     @hand.each {|card| hand.delete(card)}
     @hand = []
+<<<<<<< HEAD
+  end 
+  def play_an_ace
+    puts "You've been dealt an Ace!"
+    puts "Do you want to play this as a 1 or an 11? Type: (1/11)"
+    answer = gets.chomp.to_i
+      if answer == 1
+        1
+      elsif answer == 11
+        11
+      else
+        puts "Please enter either a 1 or 11"
+      end
+      play_game
+  end
+   
+  #I hate this method and feel like there is a much easier
+  #way of doing it.
+  def card_value card
+    if card =~ /Queen/
+      10
+    elsif card =~ /King/
+      10
+    elsif card =~ /Jack/
+      10
+    elsif card =~ /Ace/
+      puts "You've been dealt an Ace!"
+      puts "Do you want to play this as a 1 or an 11? Type: (1/11)"
+      answer = gets.chomp.to_i
+        if answer == 1
+          @value = 1
+        elsif answer == 11
+          @value = 11
+        else
+          puts "Please enter either a 1 or 11"
+        end
+        @value
+    elsif card =~ /2/
+      2
+    elsif card =~ /3/
+      3
+    elsif card =~ /4/
+      4    
+    elsif card =~ /5/
+      5
+    elsif card =~ /6/
+      6
+    elsif card =~ /7/
+      7
+    elsif card =~ /8/
+      8
+    elsif card =~ /9/
+      9
+    elsif card =~ /10/
+      10
+    else
+      0
+    end
+  end
+=======
   end  
+>>>>>>> 8b0c6e2544ea03d7da19934fa4f5a080762c3e38
   
 end  
 end
