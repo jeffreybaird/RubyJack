@@ -1,0 +1,23 @@
+#!/usr/bin/env ruby
+
+require_relative '../lib/black_jack/game'
+
+game = BlackJack::Game.new("Fun!")
+game.start
+game.name_a_player
+
+puts "To start the game, type 'deal'"
+loop do
+  answer = gets.chomp
+  case answer 
+  when 'deal'
+    game.deal
+    game.play
+    break
+  when 'quit'
+    break
+  else
+    puts "please type 'deal' or 'quit'"
+  end
+end
+
