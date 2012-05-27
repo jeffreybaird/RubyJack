@@ -9,7 +9,6 @@ describe Deck do
   @player = BlackJack::Player.new("jeff")
   @dealer = BlackJack::Dealer.new("dealer")
   @deck = BlackJack::Deck.new
-  @new_deck = @deck.create_a_deck
 end
 
   it "shows cards" do
@@ -28,7 +27,6 @@ end
   it "automatically stays"
 
   it "shows the up_cards" do
-  @deck.create_a_deck
   @dealer.take_card_face_down(@deck)
   @dealer.take_card(@deck)
   @up_cards = @dealer.show_up_cards(@dealer.hand) 

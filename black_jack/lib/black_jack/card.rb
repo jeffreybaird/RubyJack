@@ -29,3 +29,9 @@ module BlackJack
     end
   end
 end
+
+
+if __FILE__ == $0
+  card = BlackJack::Card.new("king","spades")
+  puts card
+end

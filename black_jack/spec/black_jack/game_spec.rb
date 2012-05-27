@@ -9,7 +9,6 @@ describe Game do
     @player = BlackJack::Player.new("jeff")
     @dealer = BlackJack::Dealer.new("dealer")
     @deck = BlackJack::Deck.new
-    @deck.create_a_deck
   end
   
   it "has a name" do

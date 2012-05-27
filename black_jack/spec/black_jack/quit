@@ -1,0 +1,10 @@
+= ..iinncclluuddee??
+
+(from gem rspec-core-2.10.1)
+=== IImmpplleemmeennttaattiioonn  ffrroomm  RRSSppeecc::::CCoorree::::FFiilltteerrMMaannaaggeerr
+------------------------------------------------------------------------------
+  include?(example)
+
+------------------------------------------------------------------------------
+
+

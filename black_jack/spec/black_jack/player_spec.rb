@@ -1,6 +1,7 @@
 require 'black_jack/game'
 require 'black_jack/player'
 require 'black_jack/deck'
+
 module BlackJack
 
 describe Game do
@@ -9,7 +10,6 @@ describe Game do
   @player = BlackJack::Player.new("jeff")
   @dealer = BlackJack::Dealer.new("dealer")
   @deck = BlackJack::Deck.new
-  @deck.create_a_deck
   end
   
   it "has a to_s method" do
@@ -55,7 +55,6 @@ describe Game do
       @player = BlackJack::Player.new("jeff")
       @dealer = BlackJack::Dealer.new("dealer")
       @deck = BlackJack::Deck.new
-      @deck.create_a_deck
       @player.take_specific_card(@deck,0)
       @player.take_card(@deck)
     end

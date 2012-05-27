@@ -9,16 +9,15 @@ describe Deck do
   @player = BlackJack::Player.new("jeff")
   @dealer = BlackJack::Dealer.new("dealer")
   @deck = BlackJack::Deck.new
-  @new_deck = @deck.create_a_deck
   end
   
   it "Has 52 cards" do
-    @deck.new_deck.size.should == 52
+    @deck.card_count.should == 52
   end
-  
+
   it "shuffles the deck" do
     @deck.shuffle_deck
-    @new_deck[0].should_not == "Ace of hearts"
+    @deck.deal_specific_card(0).should_not == BlackJack::Card.new("Ace", "hearts")
   end
   
   it "deals a card" do
