@@ -60,7 +60,6 @@ if __FILE__ == $0
   @player = BlackJack::Player.new("jeff")
   @dealer = BlackJack::Dealer.new("dealer")
   @deck = BlackJack::Deck.new
-  @new_deck = @deck.create_a_deck
   @dealer.take_card_face_down(@deck)
   @dealer.take_card(@deck)
   @dealer.show_up_cards(@dealer.hand)
