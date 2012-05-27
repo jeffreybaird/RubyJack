@@ -26,11 +26,11 @@ describe Game do
   
   
   it "deals out a card" do
-    @game.take_card(@deck).should == ["King of diamonds"]
+    @game.take_card(@deck).should == [Card.new("King","diamonds")]
   end
   
   it "can 'hit'" do
-    @game.hit(@deck).should == ["King of diamonds"]
+    @game.hit(@deck).should == [Card.new("King","diamonds")]
   end
 end
 end

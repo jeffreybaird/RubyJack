@@ -51,15 +51,24 @@ class Dealer < Player
 end
 
 if __FILE__ == $0
-  deck = BlackJack::Deck.new
-  deck.create_a_deck
-  deck.shuffle_deck
+  # deck = BlackJack::Deck.new
+  # deck.create_a_deck
+  # deck.shuffle_deck
+    
+  # @game = BlackJack::Game.new("game") 
+  @player = BlackJack::Player.new("jeff")
+  @dealer = BlackJack::Dealer.new("dealer")
+  @deck = BlackJack::Deck.new
+  @new_deck = @deck.create_a_deck
+  @dealer.take_card_face_down(@deck)
+  @dealer.take_card(@deck)
+  @dealer.show_up_cards(@dealer.hand)
   
-  dealer = BlackJack::Dealer.new()
-  dealer.take_card(deck)
-  dealer.take_card_face_down(deck)
-  dealer.show_up_cards(dealer.hand)
-  dealer.show_cards(dealer.hand)
-  puts "\n#{dealer.name} has #{dealer.hand} with a value of #{dealer.hand_value}"
+  # dealer = BlackJack::Dealer.new()
+  # dealer.take_card(deck)
+  # dealer.take_card_face_down(deck)
+  # dealer.show_up_cards(dealer.hand)
+  # dealer.show_cards(dealer.hand)
+  # puts "\n#{dealer.name} has #{dealer.hand} with a value of #{dealer.hand_value}"
 end
 end

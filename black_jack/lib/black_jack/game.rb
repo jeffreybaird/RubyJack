@@ -2,8 +2,6 @@ require_relative 'player'
 require_relative 'dealer'
 
 module BlackJack
-  
-#this is a fairly self-explanitory section
 
 class Game
   attr_reader :players, :game_name

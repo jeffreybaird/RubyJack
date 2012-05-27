@@ -18,12 +18,12 @@ describe Game do
   
   it "takes a card" do
     @player.take_card(@deck)
-    @player.hand.should == ["King of diamonds"]
+    @player.hand.should == [Card.new("King","diamonds")]
   end
   
   it "takes a hit" do
     @player.hit(@deck)
-    @player.hand.should == ["King of diamonds"]
+    @player.hand.should == [Card.new("King","diamonds")]
   end
   
   it "determines the point value of a hand" do
@@ -56,8 +56,8 @@ describe Game do
       @dealer = BlackJack::Dealer.new("dealer")
       @deck = BlackJack::Deck.new
       @deck.create_a_deck
-      @player.take_specific_card(@deck, 0)
-      @player.take_card(@deck)
+      @deck.deal_specific_card(0)
+      @deck.deal_a_card
     end
     it "declares black jack" do
       @player.bust?.should be_true
