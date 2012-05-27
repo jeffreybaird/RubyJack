@@ -1,9 +1,7 @@
 require_relative 'card'
 module BlackJack
   class Deck
-    
-    attr_accessor :new_deck
-    
+
     def initialize 
       new_suits = %w(hearts spades clubs diamonds )
       new_value = %w(Ace 2 3 4 5 6 7 8 9 10 Jack Queen King)
@@ -18,19 +16,6 @@ module BlackJack
       @cards
     end
     
-    # def create_a_deck
-    #   new_suits = %w(hearts spades clubs diamonds )
-    #   new_value = %w(Ace 2 3 4 5 6 7 8 9 10 Jack Queen King)
-    #   @cards = Array.new
-    #   #creates a new array by combining the information in the
-    #   #above two
-    #   new_value.each do |card|
-    #     new_suits.each do |suited|
-    #       @cards << BlackJack::Card.new(card, suited)
-    #     end 
-    #   end
-    #   @cards 
-    # end
     def card_count
       @cards.size
     end

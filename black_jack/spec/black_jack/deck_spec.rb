@@ -5,9 +5,6 @@ module BlackJack
 
 describe Deck do
   before do
-  @game = BlackJack::Game.new("game1") 
-  @player = BlackJack::Player.new("jeff")
-  @dealer = BlackJack::Dealer.new("dealer")
   @deck = BlackJack::Deck.new
   end
   
