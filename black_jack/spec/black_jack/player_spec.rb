@@ -51,13 +51,13 @@ describe Game do
   
   context "Has Black Jack" do
     before do
-      @game = BlackJack::Game.new("game1") 
+      @game = BlackJack::Game.new("game1")
       @player = BlackJack::Player.new("jeff")
       @dealer = BlackJack::Dealer.new("dealer")
       @deck = BlackJack::Deck.new
       @deck.create_a_deck
-      @deck.deal_specific_card(0)
-      @deck.deal_a_card
+      @player.take_specific_card(@deck,0)
+      @player.take_card(@deck)
     end
     it "declares black jack" do
       @player.bust?.should be_true

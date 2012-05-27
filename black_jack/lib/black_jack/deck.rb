@@ -15,7 +15,7 @@ module BlackJack
       #above two
       new_value.each do |card|
         new_suits.each do |suited|
-          @new_deck << Card.new(card, suited)
+          @new_deck << BlackJack::Card.new(card, suited)
         end 
       end 
     end
