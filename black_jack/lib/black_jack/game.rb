@@ -110,7 +110,7 @@ module BlackJack
     def determine_a_winner player, dealer
       @game.print_player(0)
       @game.print_player(1)
-      @dealer.show_cards(dealer.hand)
+      dealer.play_dealer_game(dealer.hand, @deck)
       if player.hand_value > dealer.hand_value
         puts "#{player.name} wins!"
         abort("Thanks for playing!")

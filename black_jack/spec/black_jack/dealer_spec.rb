@@ -22,9 +22,24 @@ end
     @dealer.hand.should == [{:hidden=>Card.new("King", "diamonds")}]
   end
 
-  it "automatically takes a hit"
+  it "automatically takes a hit" do
+    @dealer.take_specific_card(@deck, 8)
+    @dealer.take_specific_card(@deck, 15)
+    @dealer.play_dealer_game(@dealer.hand, @deck)
+    @dealer.hand.size.should == 3
+  end
+  it "automatically stays" do
+    @dealer.take_card_face_down(@deck)
+    @dealer.take_card(@deck)
+    @dealer.play_dealer_game(@dealer.hand, @deck)
+    @dealer.hand.size.should == 2
+  end
 
-  it "automatically stays"
+  it "should declare black jack" do
+    @dealer.take_card_face_down(@deck)
+    @dealer.take_specific_card(@deck, 0)
+    @dealer.play_dealer_game(@dealer.hand, @deck).should == "Dealer has Black Jack!"
+  end
 
   it "shows the up_cards" do
   @dealer.take_card_face_down(@deck)

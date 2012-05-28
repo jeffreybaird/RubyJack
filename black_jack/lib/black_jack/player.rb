@@ -35,7 +35,7 @@ module BlackJack
     #of each card
     def hand_value(current_value=0)
       @current_value = current_value
-      self.hand.each do |card|
+      self.hand.map do |card|
         @current_value += card.card_value
       end
       @current_value

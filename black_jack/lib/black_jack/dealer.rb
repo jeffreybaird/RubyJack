@@ -48,6 +48,28 @@ module BlackJack
       end 
       "The dealer's up-cards are #{up_cards.map { |card| card.description }.join(' ')}"
     end
+
+    def play_dealer_game hand, deck
+      show_cards(hand)
+      @value = hand_value
+      if @value == 21
+        puts @value
+        "Dealer has Black Jack!"
+      # elsif @value > 16
+      #   puts "Dealer Stays"
+      else
+        while (@value = hand_value) < 17
+          puts @value
+          puts "Dealer Hits"
+          hit(deck)
+        end        
+          if bust? 
+            fold_hand
+          else
+            "Dealer Stays"
+          end
+      end
+    end
   end  
 end
 
@@ -60,10 +82,11 @@ if __FILE__ == $0
   @player = BlackJack::Player.new("jeff")
   @dealer = BlackJack::Dealer.new("dealer")
   @deck = BlackJack::Deck.new
-  @dealer.take_card_face_down(@deck)
-  @dealer.take_card(@deck)
-  @dealer.show_up_cards(@dealer.hand)
-  
+  @dealer.take_specific_card(@deck, 8)
+  @dealer.take_specific_card(@deck, 9)
+  # @dealer.show_up_cards(@dealer.hand)
+  @dealer.play_dealer_game(@dealer.hand,@deck)
+  puts @answer
   # dealer = BlackJack::Dealer.new()
   # dealer.take_card(deck)
   # dealer.take_card_face_down(deck)

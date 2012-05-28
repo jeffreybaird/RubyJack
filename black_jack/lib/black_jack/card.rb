@@ -11,10 +11,12 @@ module BlackJack
       @value == card.value && @suit == card.suit
     end
 
+    def to_s
+      "#{@value} of #{@suit}"
+    end
     def description
       "#{@value} of #{@suit}"
     end
-
     def card_value
       case @value
         when "Queen", "King", "Jack"
