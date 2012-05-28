@@ -6,7 +6,7 @@ module BlackJack
       @value = value
       @suit  = suit
     end
-
+    
     def ==(card)
       @value == card.value && @suit == card.suit
     end

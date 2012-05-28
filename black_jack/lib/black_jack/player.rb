@@ -65,7 +65,6 @@ end
 
 if __FILE__ == $0
 deck = BlackJack::Deck.new
-deck.create_a_deck
 deck.shuffle_deck
 puts deck.new_deck
 

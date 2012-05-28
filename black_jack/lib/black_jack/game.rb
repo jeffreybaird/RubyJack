@@ -20,10 +20,8 @@ module BlackJack
       
       #a method to easily print out the player
       
-      def print_players(players=@players)
-        players.each do |player|
-          puts "#{player.name} has #{player.hand}"
-        end
+      def print_player index_number
+        @players[index_number].to_s 
       end
       
       #we don't use the two methods below (they are also in player)
@@ -58,7 +56,6 @@ module BlackJack
     def deal
       @deck = BlackJack::Deck.new
       @dealer = BlackJack::Dealer.new()
-      @deck.create_a_deck
       @deck.shuffle_deck
       @player.take_card(@deck)
       @player.take_card(@deck)
@@ -83,7 +80,7 @@ module BlackJack
     def player_hits player=@player, deck=@deck, dealer=@dealer, game=@game
       player.hit(deck)
       puts "#{player.name} has #{player.hand} with a value of #{player.hand_value}"
-      check_bust player
+      check_bust
     end
 
     #runs if stay
@@ -149,25 +146,11 @@ module BlackJack
 end
 
 if __FILE__ == $0
-game = BlackJack::Game.new("game1")  
-  
+game = BlackJack::Game.new("game1")   
 deck = BlackJack::Deck.new
-deck.create_a_deck
-deck.shuffle_deck
-puts deck.new_deck
-
 player1 = BlackJack::Player.new("jeff")
 player2 = BlackJack::Player.new("clare")
 game.add_player(player1)
 game.add_player(player2)
-player1.take_card (deck)
-player2.take_card(deck)
-player1.take_card (deck)
-player2.take_card(deck)
-player1.hit(deck)
-player2.hit(deck)
-game.play
 game.print_players
-game.bust?(player1)
-game.bust?(player2)
 end
