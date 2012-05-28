@@ -108,7 +108,9 @@ module BlackJack
     #again should be in game class
     #figures out who wins
     def determine_a_winner player, dealer
-      @game.print_players
+      @game.print_player(0)
+      @game.print_player(1)
+      @dealer.show_cards(dealer.hand)
       if player.hand_value > dealer.hand_value
         puts "#{player.name} wins!"
         abort("Thanks for playing!")
