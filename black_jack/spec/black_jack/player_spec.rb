@@ -13,7 +13,7 @@ describe Game do
   end
   
   it "has a to_s method" do
-    @player.to_s.should == "jeff's hand is worth 0"
+    @player.to_s.should == "jeff has [] with a value of 0"
   end
   
   it "takes a card" do
@@ -51,15 +51,13 @@ describe Game do
   
   context "Has Black Jack" do
     before do
-      @game = BlackJack::Game.new("game1")
       @player = BlackJack::Player.new("jeff")
-      @dealer = BlackJack::Dealer.new("dealer")
       @deck = BlackJack::Deck.new
       @player.take_specific_card(@deck,0)
       @player.take_card(@deck)
     end
     it "declares black jack" do
-      @player.bust?.should be_true
+      @player.should be_blackjack
     end
   end
 end

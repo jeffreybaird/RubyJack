@@ -5,7 +5,7 @@ module BlackJack
   class Player
     
     attr_reader :name, :hand
-    attr_accessor :current_value, :hand_value
+    attr_accessor :current_value, :hand_value, :player
     
     def initialize (name)
       @name = name
@@ -14,22 +14,22 @@ module BlackJack
     end
     #I feel like I should have a to_s method, not sure I'm doing it right
     def to_s
-     "#{@name}'s hand is worth #{self.hand_value}"
+     "#{@name} has #{hand} with a value of #{hand_value}"
     end
     
     def take_card deck
-      self.hand << deck.deal_a_card
-      self.hand
+      hand << deck.deal_a_card
+      hand
     end
     
     def take_specific_card(deck, index_number=0)
-      self.hand << deck.deal_specific_card(index_number)
-      self.hand
+      hand << deck.deal_specific_card(index_number)
+      hand
     end
     #this might be a bit redundant but I feel like it
     #makes the code more intuitive
     def hit deck
-      self.take_card(deck)
+      take_card(deck)
     end
     #Program interates through the hand calling the card_value
     #of each card
@@ -40,20 +40,13 @@ module BlackJack
       end
       @current_value
     end
-    #When the hand has a value of over 21 it busts and declares true 
-    #when it equals 21 it declares blackjack and returns true
+
     def bust?
-     if hand_value > 21 
-       fold_hand
-       puts "#{@name} is Bust!"
-       true
-     elsif hand_value == 21
-       puts "BlackJack!"
-       true
-     else
-       puts "#{@name}'s hand is worth #{self.hand_value}"
-       false
-     end
+     hand_value > 21 
+    end
+    
+    def blackjack?
+      hand_value == 21
     end
     #gives us a method for folding a busted hand
     def fold_hand

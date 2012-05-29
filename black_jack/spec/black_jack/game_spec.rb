@@ -16,20 +16,24 @@ module BlackJack
       @game.game_name.should_not be_nil
     end
     
+    it "deals out the game" do
+      @game.deal(@player).class.should == String
+    end
     it "adds a player to the game" do
-      @game.players[0].to_s.should == "jeff's hand is worth 0"
+      @game.players[0].to_s.should == "jeff has [] with a value of 0"
     end
 
     it "prints the players out" do
       @player.take_card(@deck)
-      @game.print_player(0).should == "jeff's hand is worth 10"
+      @game.players[0].to_s.should == "jeff has [King of diamonds] with a value of 10"
     end
     it "deals out a card" do
-      @game.take_card(@deck).should == [Card.new("King","diamonds")]
+      @player.take_card(@deck).should == [Card.new("King","diamonds")]
+      puts @player.hand
     end
     
     it "can 'hit'" do
-      @game.hit(@deck).should == [Card.new("King","diamonds")]
+      @player.hit(@deck).should == [Card.new("King","diamonds")]
     end
   end
 end
