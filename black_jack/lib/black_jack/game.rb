@@ -21,17 +21,12 @@ module BlackJack
       @players.each {|x| puts "#{x.to_s}" }
     end
 
-    def start
-      @game = BlackJack::Game.new("game")
-    end
-
     def name_a_player
       puts "What is your name?"
       @player = BlackJack::Player.new(gets.capitalize.chomp)
     end
 
-    def deal player
-      name_a_player
+    def deal
       @deck = BlackJack::Deck.new
       @dealer = BlackJack::Dealer.new()
       @deck.shuffle_deck
@@ -47,13 +42,18 @@ module BlackJack
     end
     
     def shows_the_table
-      "Your cards are #{@player.hand}, #{@dealer.show_up_cards(@dealer.hand)}"
+      puts "Your cards are #{@player.hand}, #{@dealer.show_up_cards(@dealer.hand)}"
     end
 
     def check_bust
       if @player.bust?
+        @player.fold_hand
+        puts "#{@player.name} busted!"
         determine_a_winner(@player, @dealer)
         abort("Thanks for playing!")
+      elsif @player.blackjack?
+        puts "Black Jack!"
+        determine_a_winner(@player, @dealer)
       else
         play
       end
@@ -94,13 +94,13 @@ module BlackJack
       @game.to_s
       dealer.play_dealer_game(dealer.hand, @deck)
       if player.hand_value > dealer.hand_value
-        puts "#{player.name} wins!"
+        puts "#{player.name} Wins!"
         abort("Thanks for playing!")
       elsif player.hand_value == 21
-        puts "#{player.name} wins!"
+        puts "#{player.name} Wins!"
         abort("Thanks for playing!")
       else
-        puts "#{dealer.name} wins!"
+        puts "#{dealer.name} Wins!"
         abort("Thanks for playing!")
       end
     end

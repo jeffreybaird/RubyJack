@@ -7,7 +7,7 @@ module BlackJack
     # a black jack dealer in vegas
     attr_reader :in_the_hole
     
-    def initialize (name="dealer")
+    def initialize (name="Dealer")
       super(@hand)
       @name = name
     end
@@ -46,12 +46,11 @@ module BlackJack
           up_cards << card      
         end
       end 
-      "The dealer's up-cards are #{up_cards.map { |card| card.description }.join(' ')}"
+      "The dealer's up-card is #{up_cards.map { |card| card.description }.join(' ')}"
     end
     
     def dealer_hits deck
       while (@value = hand_value) < 17
-        puts @value
         puts "Dealer Hits"
         hit(deck)
       end
@@ -61,13 +60,15 @@ module BlackJack
       show_cards(hand)
       @value = hand_value
       if @value == 21
-        "Dealer has Black Jack!"
+       puts "Dealer has Black Jack!"
       else
         dealer_hits deck     
           if bust? 
+            to_s
             fold_hand
           else
-            "Dealer Stays"
+            to_s
+            puts "Dealer Stays"
           end
       end
     end

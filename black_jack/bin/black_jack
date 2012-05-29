@@ -3,7 +3,6 @@
 require_relative '../lib/black_jack/game'
 
 game = BlackJack::Game.new("Fun!")
-game.start
 game.name_a_player
 
 puts "To start the game, type 'deal'"
